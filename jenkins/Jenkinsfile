@@ -2,10 +2,15 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('Build') {
             steps {
-                echo 'Hello World'
+                buildDebug()
             }
         }
     }
+}
+
+def buildDebug() {
+    sh "./gradlew clean assembleDebug"
+    archiveArtifacts artifacts: 'app/build/outputs/apk/demo/debug/*.apk', fingerprint: true
 }
