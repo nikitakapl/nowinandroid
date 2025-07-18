@@ -63,9 +63,14 @@ android {
         }
     }
     testOptions {
-        unitTests {
-            isIncludeAndroidResources = true
+        unitTests.all {
+            it.useJUnit()
+            it.useJUnitPlatform()
+            it.reports.junitXml.required.set(true)
+            // Optionally, enable HTML reports as well (usually default)
+            it.reports.html.required.set(true)
         }
+        unitTests.isIncludeAndroidResources = true
     }
     namespace = "com.google.samples.apps.nowinandroid"
 }
@@ -106,6 +111,12 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     ksp(libs.hilt.compiler)
+
+    // Junit Tests
+    implementation(platform(libs.junit.bom))
+    testImplementation(libs.junit.jupiter.api)
+    testRuntimeOnly(libs.junit.jupiter.engine)
+    testRuntimeOnly(libs.junit.platform.launcher)
 
     debugImplementation(libs.androidx.compose.ui.testManifest)
     debugImplementation(projects.uiTestHiltManifest)
