@@ -64,10 +64,11 @@ android {
     }
     testOptions {
         unitTests.all {
-            it.useJUnitPlatform()
-            it.reports.junitXml.required.set(true)
-            it.reports.html.required.set(true)
-            it.outputs.upToDateWhen { false }
+            it.useJUnit()  // Включаем JUnit 4
+            it.reports {
+                junitXml.required = true  // XML-отчеты (для CI)
+                html.required = true     // HTML-отчеты (для человека)
+            }
         }
         unitTests.isIncludeAndroidResources = true
     }
@@ -112,10 +113,7 @@ dependencies {
     ksp(libs.hilt.compiler)
 
     // Junit Tests
-    implementation(platform(libs.junit.bom))
-    testImplementation(libs.junit.jupiter.api)
-    testRuntimeOnly(libs.junit.jupiter.engine)
-    testImplementation(libs.junit.platform.launcher)
+    testImplementation("junit:junit:4.13.2")
 
     debugImplementation(libs.androidx.compose.ui.testManifest)
     debugImplementation(projects.uiTestHiltManifest)

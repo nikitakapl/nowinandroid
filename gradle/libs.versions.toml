@@ -100,13 +100,6 @@ androidx-metrics = { group = "androidx.metrics", name = "metrics-performance", v
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxNavigation" }
 androidx-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "androidxNavigation" }
 androidx-profileinstaller = { group = "androidx.profileinstaller", name = "profileinstaller", version.ref = "androidxProfileinstaller" }
-
-# Junit Testing
-junit-bom = { group = "org.junit", name = "junit-bom", version = "5.12.1" }
-junit-jupiter-api = { group = "org.junit.jupiter", name = "junit-jupiter-api" }
-junit-jupiter-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine" }
-junit-platform-launcher = { group = "org.junit.platform", name = "junit-platform-launcher" }
-
 androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidxTestCore" }
 androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxEspresso" }
 androidx-test-ext = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "androidxTestExt" }
