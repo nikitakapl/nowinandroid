@@ -7,10 +7,19 @@ pipeline {
                 buildDebug()
             }
         }
+        stage('Run Unit Tests') {
+            steps {
+                runUnitTests()
+            }
+        }
     }
 }
 
 def buildDebug() {
     sh "./gradlew clean assembleDebug"
     archiveArtifacts artifacts: 'app/build/outputs/apk/demo/debug/*.apk', fingerprint: true
+}
+
+def runUnitTests() {
+    sh "./gradlew testDebugUnitTest"
 }
