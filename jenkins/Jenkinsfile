@@ -5,9 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh "./gradlew clean assembleDebug"
-                    archiveArtifacts
-                        artifacts: 'app/build/outputs/apk/demo/debug/*.apk',
-                        fingerprint: true,
+                archiveArtifacts artifacts: 'app/build/outputs/apk/demo/debug/*.apk', fingerprint: true,
             }
         }
         stage('Unit Tests') {
