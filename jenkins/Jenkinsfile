@@ -22,4 +22,5 @@ def buildDebug() {
 
 def runUnitTests() {
     sh "./gradlew testDebugUnitTest"
+    junit 'app/build/test-results/**/TEST-*.xml'
 }

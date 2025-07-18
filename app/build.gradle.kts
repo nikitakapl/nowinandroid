@@ -64,11 +64,10 @@ android {
     }
     testOptions {
         unitTests.all {
-            it.useJUnit()
             it.useJUnitPlatform()
             it.reports.junitXml.required.set(true)
-            // Optionally, enable HTML reports as well (usually default)
             it.reports.html.required.set(true)
+            it.outputs.upToDateWhen { false }
         }
         unitTests.isIncludeAndroidResources = true
     }
@@ -116,7 +115,7 @@ dependencies {
     implementation(platform(libs.junit.bom))
     testImplementation(libs.junit.jupiter.api)
     testRuntimeOnly(libs.junit.jupiter.engine)
-    testRuntimeOnly(libs.junit.platform.launcher)
+    testImplementation(libs.junit.platform.launcher)
 
     debugImplementation(libs.androidx.compose.ui.testManifest)
     debugImplementation(projects.uiTestHiltManifest)
