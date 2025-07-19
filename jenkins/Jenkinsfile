@@ -11,7 +11,7 @@ pipeline {
         stage('Unit Tests') {
             steps {
                 sh './gradlew testDemoDebugUnitTest -Proborazzi.test.verify=false'
-                junit 'app/build/reports/tests/**/*'
+                junit 'app/build/test-results/**/TEST-*.xml'
             }
         }
     }
