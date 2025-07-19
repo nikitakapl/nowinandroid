@@ -14,10 +14,5 @@ pipeline {
                 junit 'app/build/reports/tests/**/*'
             }
         }
-        post {
-            always {
-                archiveArtifacts 'app/build/reports/tests/**/*'
-            }
-        }
     }
 }
