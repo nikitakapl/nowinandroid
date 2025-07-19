@@ -10,28 +10,13 @@ pipeline {
         }
         stage('Unit Tests') {
             steps {
-                // Запускаем unit-тесты и генерируем отчёты
-                sh 'chmod +x gradlew'
-                sh './gradlew clean testDebugUnitTest'
-
-                // Сохраняем отчёты в Jenkins
-                junit '**/build/test-results/testDebugUnitTest/*.xml'
-                archiveArtifacts '**/build/test-results/testDebugUnitTest/*.xml'
+                sh './gradlew clean testDebugUnitTest --no-daemon --rerun-tasks'
+                junit 'app/build/reports/tests/**/*'
             }
         }
-        stage('Publish HTML Report') {
-            steps {
-                // Публикуем HTML-отчёт (требуется плагин "HTML Publisher")
-                publishHTML(
-                    target: [
-                        allowMissing: false,
-                        alwaysLinkToLastBuild: true,
-                        keepAll: true,
-                        reportDir: 'app/build/reports/tests/testDebugUnitTest',
-                        reportFiles: 'index.html',
-                        reportName: 'JUnit 4 Test Report'
-                    ]
-                )
+        post {
+            always {
+                archiveArtifacts 'app/build/reports/tests/**/*'
             }
         }
     }
