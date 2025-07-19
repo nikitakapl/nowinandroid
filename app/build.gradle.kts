@@ -63,15 +63,26 @@ android {
             excludes.add("/META-INF/{AL2.0,LGPL2.1}")
         }
     }
+
     testOptions {
-        unitTests.all {
-            it.useJUnit()  // Включаем JUnit 4
-            it.reports {
-                junitXml.required = true  // XML-отчеты (для CI)
-                html.required = true     // HTML-отчеты (для человека)
+        unitTests {
+            isIncludeAndroidResources = true
+            isReturnDefaultValues = true
+
+            all {
+                it.useJUnit()
+                it.reports {
+                    junitXml.outputLocation.set(file("$buildDir/test-results/test"))
+                    junitXml.required.set(true)
+                    html.outputLocation.set(file("$buildDir/reports/tests"))
+                    html.required.set(true)
+                }
+                it.testLogging {
+                    events("passed", "skipped", "failed", "standardOut", "standardError")
+                    showStandardStreams = true
+                }
             }
         }
-        unitTests.isIncludeAndroidResources = true
     }
     namespace = "com.google.samples.apps.nowinandroid"
 }
