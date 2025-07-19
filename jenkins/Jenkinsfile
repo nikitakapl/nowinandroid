@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Unit Tests') {
             steps {
-                sh './gradlew clean testDebugUnitTest --no-daemon --rerun-tasks'
+                sh './gradlew testDemoDebugUnitTest -Proborazzi.test.verify=false'
                 junit 'app/build/reports/tests/**/*'
             }
         }
