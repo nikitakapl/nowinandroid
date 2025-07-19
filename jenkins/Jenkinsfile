@@ -11,6 +11,7 @@ pipeline {
         stage('Unit Tests') {
             steps {
                 // Запускаем unit-тесты и генерируем отчёты
+                sh 'chmod +x gradlew'
                 sh './gradlew clean testDebugUnitTest'
 
                 // Сохраняем отчёты в Jenkins
