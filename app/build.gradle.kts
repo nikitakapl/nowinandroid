@@ -35,7 +35,8 @@ android {
         versionName = "0.1.2" // X.Y.Z; X = Major, Y = minor, Z = Patch level
 
         // Custom test runner to set up Hilt dependency graph
-        testInstrumentationRunner = "com.google.samples.apps.nowinandroid.core.testing.NiaTestRunner"
+//        testInstrumentationRunner = "com.google.samples.apps.nowinandroid.core.testing.NiaTestRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -113,7 +114,9 @@ dependencies {
     ksp(libs.hilt.compiler)
 
     // Junit Tests
-    testImplementation("junit:junit:4.13.2")
+    testImplementation("junit:junit:4.13.2") // or the latest version
+    androidTestImplementation("androidx.test:runner:1.5.2") // or the latest version
+    androidTestImplementation("androidx.test.ext:junit:1.1.5") // or the latest version
 
     debugImplementation(libs.androidx.compose.ui.testManifest)
     debugImplementation(projects.uiTestHiltManifest)

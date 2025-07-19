@@ -15,7 +15,7 @@ pipeline {
 
                 // Сохраняем отчёты в Jenkins
                 junit '**/build/test-results/testDebugUnitTest/*.xml'
-                archiveArtifacts '**/build/reports/tests/testDebugUnitTest/**/*'
+                archiveArtifacts '**/build/test-results/testDebugUnitTest/*.xml'
             }
         }
         stage('Publish HTML Report') {
